@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* rem velikosti se odvozuji od root size, tj. 1 rem = 10px, je standard davat 10px misto 16px kvuli vypoctum */
+  /* zadavat v px je ale bad practice, ptz nekteri lide si meni defaultni nastaveni, proto se zadava velikost v procentech */
+  /* pokud tedy chceme zachovat 10px, musime si dopocitat => 10/16 = 0.625 */
+  font-size: 62.5%;
+  //   this defines what 1rem is, therefore base and not typography
+
+
+  @include respond(tab-land) { // width < 1200?
+    font-size: 56.25%; // 1 rem = 9 px, 9/16 = 56.25%
+  }
+  
+  @include respond(tab-port) { // width < 900?
+    font-size: 50%; // 1 rem = 8 px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1 rem = 12 px, 12/16 = 75%
+  }
+
+
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
